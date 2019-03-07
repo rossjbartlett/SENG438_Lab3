@@ -350,6 +350,27 @@ public class RangeTest {
 		double expected = 0.0;
 		assertEquals("The contrain of 3 within (0,10)", expected, r, 0.01d);
 	}
+	
+	//tests for getCentralValue(), added for lab3
+	@Test
+	public void test_getCentralValue(){
+		double r = exampleRange5.getCentralValue(); //exampleRange5 is (0,10)
+		double expected = 5.0;
+		assertEquals("The central value of (0,10)", expected, r, 0.01d);
+	}
+	
+	//tests for constructor, added for lab3
+	@Test(expected = IllegalArgumentException.class)
+	public void test_ctor_lowerBiggerThanUpper(){
+		Range r = new Range(10, 5);
+	}
+	
+	//tests for hashCode(), added for lab3
+	@Test
+	public void test_hashCode(){
+		int r = exampleRange5.hashCode(); //exampleRange5 is (0,10)
+		int expected = 1076101120;
+		assertEquals("The hashCode of (0,10)", expected, r);	}
 
 
 	@After
