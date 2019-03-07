@@ -7,11 +7,6 @@
 	<classpathentry kind="lib" path="lib/jcommon-1.0.5.jar"/>
 	<classpathentry kind="lib" path="lib/junit.jar"/>
 	<classpathentry kind="lib" path="lib/servlet.jar"/>
-	<classpathentry kind="lib" path="jMock/jmock-2.5.1.jar"/>
-	<classpathentry kind="lib" path="jMock/jmock-junit3-2.5.1.jar"/>
-	<classpathentry kind="lib" path="jMock/jmock-junit4-2.5.1.jar"/>
-	<classpathentry kind="lib" path="jMock/jmock-legacy-2.5.1.jar"/>
-	<classpathentry kind="lib" path="jMock/jmock-script-2.5.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/jMock/jmock-2.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/jMock/jmock-junit3-2.5.1.jar"/>

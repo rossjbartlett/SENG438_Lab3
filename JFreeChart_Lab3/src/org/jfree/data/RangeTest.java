@@ -256,6 +256,16 @@ public class RangeTest {
 		toTest = null;
 		compare = null;
 	}
+	
+	//this test added for lab3
+	@Test
+	public void test_Shift_Crosses_Zero_Enabled()
+	{
+		Range toTest = new Range(-5, -1);
+		Range compare = new Range(-2, 2);
+		toTest = Range.shift(toTest, 3, true);
+		assertEquals("Testing shift that crosses zero, with zeroCrossing enabled", compare, toTest);
+	}
 
 	
 	//tests for contains()
