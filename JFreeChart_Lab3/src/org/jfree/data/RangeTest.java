@@ -309,6 +309,47 @@ public class RangeTest {
 		assertEquals("Testing contains() with a value that is less than the lower bound of range", false, result);
 		toTest = null;
 	}
+	
+	//tests for expandToInclude(), added for lab3
+	//note that expandToInclude(range,null) cant be tested, cant pass in null for primitive type double
+
+	@Test
+	public void test_expandToInclude_valBelowRange(){
+		Range r = Range.expandToInclude(exampleRange5, -5); //exampleRange5 is (0,10)
+		Range expected = new Range(-5, 10);
+		assertEquals("The expansion of (0,10) to inlcude -5", expected, r);
+	}
+	@Test
+	public void test_expandToInclude_valAboveRange(){
+		Range r = Range.expandToInclude(exampleRange5, 15); //exampleRange5 is (0,10)
+		Range expected = new Range(0, 15);
+		assertEquals("The expansion of (0,10) to inlcude 15", expected, r);
+	}
+	@Test
+	public void test_expandToInclude_valInRange(){
+		Range r = Range.expandToInclude(exampleRange5, 5); //exampleRange5 is (0,10)
+		Range expected = new Range(0, 10);
+		assertEquals("The expansion of (0,10) to inlcude 5", expected, r);
+	}
+	
+	//tests for constrain(), added for lab3
+	@Test
+	public void test_constrain_valInRange(){
+		double r = exampleRange5.constrain(3.2); //exampleRange5 is (0,10)
+		double expected = 3.2;
+		assertEquals("The contrain of 3.2 within (0,10)", expected, r, 0.01d);
+	}
+	@Test
+	public void test_constrain_valAboveRange(){
+		double r = exampleRange5.constrain(13.3); //exampleRange5 is (0,10)
+		double expected = 10.0;
+		assertEquals("The contrain of 3 within (0,10)", expected, r, 0.01d);
+	}@Test
+	public void test_constrain_valBelowRange(){
+		double r = exampleRange5.constrain(-4.5); //exampleRange5 is (0,10)
+		double expected = 0.0;
+		assertEquals("The contrain of 3 within (0,10)", expected, r, 0.01d);
+	}
 
 
 	@After
