@@ -193,6 +193,40 @@ public class DataUtilitiesTest {
 		assertEquals("Acessing column 2 should return 5",5, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	
+	//Testing calculateColumnTotal where some of the columns contain null values
+	@Test
+	public void testing_calculateColumnTotal_with_null_values_in_column()
+	{
+		Mockery mockingContext = new Mockery();
+		final Values2D values = mockingContext.mock(Values2D.class);
+		mockingContext.checking(new Expectations() 
+		{
+			{
+				one(values).getRowCount();
+				will(returnValue(5));
+				
+				one(values).getValue(0, 0);
+				will(returnValue(5));
+				
+				one(values).getValue(1, 0);
+				will(returnValue(4));
+				
+				one(values).getValue(2, 0);
+				will(returnValue(null));
+				
+				one(values).getValue(3, 0);
+				will(returnValue(1));
+				
+				one(values).getValue(4, 0);
+				will(returnValue(0));
+			}
+		});
+		
+		double result = DataUtilities.calculateColumnTotal(values, 0);
+		
+		assertEquals("Acessing column 0 should return 10",10, result, .000000001d);
+	}
 
 	
 	// tests for calculateRowTotal()
@@ -375,6 +409,40 @@ public class DataUtilitiesTest {
 		// tear-down: NONE in this test method
 	}
 
+	//Testing calculateRowTotal where some of the rows contain null values
+	@Test
+	public void testing_calculateRowTotal_with_null_values_in_row()
+	{
+		Mockery mockingContext = new Mockery();
+		final Values2D values = mockingContext.mock(Values2D.class);
+		mockingContext.checking(new Expectations()
+		{
+			{
+				one(values).getColumnCount();
+				will(returnValue(5));
+				
+				one(values).getValue(0, 0);
+				will(returnValue(6));
+				
+				one(values).getValue(0, 1);
+				will(returnValue(4));
+				
+				one(values).getValue(0, 2);
+				will(returnValue(3));
+				
+				one(values).getValue(0, 3);
+				will(returnValue(null));
+				
+				one(values).getValue(0, 4);
+				will(returnValue(null));
+			}
+				
+		});
+		
+		double result = DataUtilities.calculateRowTotal(values, 0);
+		
+		assertEquals("Acessing row 0 should return 13",13, result, .000000001d);
+	}
 	
 	// tests for createNumberArray()
 	@Test(expected = InvalidParameterException.class)
@@ -564,7 +632,51 @@ public class DataUtilitiesTest {
 	}
 
 	//TODO: More tests for getCumulativePercentage()
+	
+	//Testing getCumulativePercentage where the KeyedValues contain null values
+	@Test
+	public void testing_getCumulativePercentage_with_null_value()
+	{
+		Mockery mockingContext1 = new Mockery();
+		final KeyedValues testCase = mockingContext1.mock(KeyedValues.class);
+		mockingContext1.checking(new Expectations() 
+		{
+			{
+				atLeast(1).of(testCase).getItemCount();
+				will(returnValue(4));
+				
+				atLeast(1).of(testCase).getKey(0);
+				will(returnValue(0));
+				atLeast(1).of(testCase).getValue(0);
+				will(returnValue(2));
+				
+				atLeast(1).of(testCase).getKey(1);
+				will(returnValue(1));
+				atLeast(1).of(testCase).getValue(1);
+				will(returnValue(3));
+				
+				atLeast(1).of(testCase).getKey(2);
+				will(returnValue(2));
+				atLeast(1).of(testCase).getValue(2);
+				will(returnValue(5));
+				
+				atLeast(1).of(testCase).getKey(3);
+				will(returnValue(3));
+				atLeast(1).of(testCase).getValue(3);
+				will(returnValue(null));
+			}
+		});
 
+		// exercise
+		KeyedValues result = DataUtilities.getCumulativePercentages(testCase);
+		// verify
+		assertEquals("Expecting index 0 to have a cumulitive percentage of 0.2", 0.2, result.getValue(0).doubleValue(), .000000001d);
+		assertEquals("Expecting index 1 to have a cumulitive percentage of 0.5", 0.5, result.getValue(1).doubleValue(), .000000001d);
+		assertEquals("Expecting index 2 to have a cumulitive percentage of 1.0", 1.0, result.getValue(2).doubleValue(), .000000001d);
+		assertEquals("Expecting index 3 to have a cumulitive percentage of 1.0", 1.0, result.getValue(3).doubleValue(), .000000001d);
+				// tear-down: NONE in this test method
+		
+	}
 
 }
 
