@@ -195,6 +195,7 @@ public class DataUtilitiesTest {
 	}
 	
 	//Testing calculateColumnTotal where some of the columns contain null values
+	//this test added for Lab3
 	@Test
 	public void testing_calculateColumnTotal_with_null_values_in_column()
 	{
@@ -408,6 +409,9 @@ public class DataUtilitiesTest {
 		assertEquals("Summing row 2 should return 5",5, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	
+	
+	//THESE TESTS BELOW added for lab3 -----------------------------------------------------
 
 	//Testing calculateRowTotal where some of the rows contain null values
 	@Test
