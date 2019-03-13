@@ -28,109 +28,59 @@ public class RangeTest {
 	}
 
 	//Tests for combine()
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Both args are null
-	 */
 	@Test
 	public void combineNullRanges(){
 		Range r = Range.combine(null,null);
 		assertEquals("The combination of 2 null ranges should be null", null, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Arg1 is null, Arg2 is not
-	 */
 	@Test
 	public void combineFirstRangeNull(){
 		Range r = Range.combine(null,exampleRange);
 		Range expected = new Range(-1, 1);
 		assertEquals("The combination of 1 null range (first arg) and 1 valid should return the valid range", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Arg2 is null, Arg1 is not
-	 */
 	@Test
 	public void combineSecondRangeNull(){
 		Range r = Range.combine(exampleRange,null);
 		Range expected = new Range(-1, 1);
 		assertEquals("The combination of 1 null range (second arg) and 1 valid should return the valid range",expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Both args are the same object
-	 */
 	@Test
 	public void combineSameRangeObject(){
 		Range r = Range.combine(exampleRange,exampleRange);
 		Range expected = new Range(-1, 1);
 		assertEquals("The combination of the same range object should return the same object", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Overlapping ranges, first range is lower than second.
-	 */
 	@Test
 	public void combineOverlappingRangesLowThenHigh(){
 		Range r = Range.combine(exampleRange,exampleRange2);
 		Range expected = new Range(-1, 2);
 		assertEquals("The combination of (-1,1) and (0,2) overlapping ranges should be -1 to 2", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Overlapping ranges, second range is lower than first.
-	 */
 	@Test
 	public void combineOverlappingRangesHighThenLow(){
 		Range r = Range.combine(exampleRange2,exampleRange);
 		Range expected = new Range(-1, 2);
 		assertEquals("The combination of (0,2) and (-1,1) overlapping ranges should be -1 to 2", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Non-overlapping ranges, first range is lower than second.
-	 */
 	@Test
 	public void combineNotOverlappingRangesLowThenHigh(){
 		Range r = Range.combine(exampleRange2,exampleRange3);
 		Range expected = new Range(0, 5);
 		assertEquals("The combination of (0,2) and (3,5) overlapping ranges should be 0 to 5", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Non-overlapping ranges, second range is lower than first..
-	 */
 	@Test
 	public void combineNotOverlappingRangesHighThenLow(){
 		Range r = Range.combine(exampleRange3,exampleRange2);
 		Range expected = new Range(0, 5);
 		assertEquals("The combination of (3,5) and (0,2)  overlapping ranges should be 0 to 5", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: First range contains second range. 
-	 */
 	@Test
 	public void combineContainedRangesFirstContainsSecond(){
 		Range r = Range.combine(exampleRange2,exampleRange4);
 		Range expected = new Range(0, 2);
 		assertEquals("The combination of (0,2) and (0.5,1.5) ranges should be 0 to 2", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered:  Second Range contains first range. 
-	 */
 	@Test
 	public void combineContainedRangesSecondContainsFirst(){
 		Range r = Range.combine(exampleRange4,exampleRange2);
@@ -139,108 +89,59 @@ public class RangeTest {
 	}
 
 	//Tests for expand()
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Null range
-	 */
 	@Test(expected = InvalidParameterException.class)
 	public void expandNullRange(){
 		Range.expand(null,1,1);
+		//it throws java.lang.IllegalArgumentException instead
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: BB and BB
-	 */
 	@Test
 	public void expandMarginsBBandBB(){
 		Range r = Range.expand(exampleRange5,-0.1,-0.1);
 		Range expected = new Range(1, 9);
 		assertEquals("The expansion of (0,10) by margins (-0.1,-0.1)", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: BB and AB
-	 */
 	@Test
 	public void expandMarginsBBandAB(){
 		Range r = Range.expand(exampleRange5,-0.1,0.1);
 		Range expected = new Range(1, 11);
 		assertEquals("The expansion of (0,10) by margins (-0.1,0.1)", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: BB and B
-	 */
 	@Test
 	public void expandMarginsBBandB(){
 		Range r = Range.expand(exampleRange5,-0.1,0);
 		Range expected = new Range(1, 10);
 		assertEquals("The expansion of (0,10) by margins (-0.1,0)", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: B and BB
-	 */
 	@Test
 	public void expandMarginsBandBB(){
 		Range r = Range.expand(exampleRange5,0,-0.1);
 		Range expected = new Range(0, 9);
 		assertEquals("The expansion of (0,10) by margins (0,-0.1)", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: B and AB
-	 */
 	@Test
 	public void expandMarginsBandAB(){
 		Range r = Range.expand(exampleRange5,0,0.1);
 		Range expected = new Range(0, 11);
 		assertEquals("The expansion of (0,10) by margins (0,0.1)", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered:B and B
-	 */
 	@Test
 	public void expandMarginsBandB(){
 		Range r = Range.expand(exampleRange5,0,0);
 		Range expected = new Range(0, 10);
 		assertEquals("The expansion of (0,10) by margins (0,0)", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: AB and BB
-	 */
 	@Test
 	public void expandMarginsABandBB(){
 		Range r = Range.expand(exampleRange5,0.1,-0.1);
 		Range expected = new Range(-1, 9);
 		assertEquals("The expansion of (0,10) by margins (0.1,-0.1)", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: AB and AB
-	 */
 	@Test
 	public void expandMarginsABandAB(){
 		Range r = Range.expand(exampleRange5,0.1,0.1);
 		Range expected = new Range(-1, 11);
 		assertEquals("The expansion of (0,10) by margins (0.1,0.1)", expected, r);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: AB and B
-	 */
 	@Test
 	public void expandMarginsABandB(){
 		Range r = Range.expand(exampleRange5,0.1,0);
@@ -249,12 +150,6 @@ public class RangeTest {
 	}
 
 	//tests for intersects()
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered:Ranges which have a lower bound that is 
-	 * 		less than the upper bound of a Range object 
-	 */
 	@Test
 	public void test_Intersects_Provided_Lowerbound_Less_Than_Upperbound()
 	{
@@ -263,12 +158,6 @@ public class RangeTest {
 		assertEquals("Testing intersects() where the provided lower bound < toTests upper bound", true, result);
 		toTest = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Ranges which have a lower bound that is 
-	 * 		equal the upper bound of a Range object
-	 */
 	@Test
 	public void test_Intersects_Provided_Lowerbound_Equal_To_Upperbound()
 	{
@@ -277,12 +166,6 @@ public class RangeTest {
 		assertEquals("Testing intersects() where the provided lower bound == toTests upper bound", true, result);
 		toTest = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Ranges which have a lower bound that 
-	 * 		is greater than the upper bound of a Range object
-	 */
 	@Test
 	public void test_Intersects_Provided_Lowerbound_Greater_Than_Upperbound()
 	{
@@ -291,12 +174,6 @@ public class RangeTest {
 		assertEquals("Testing intersects() where the provided lower bound > toTests upper bound", false, result);
 		toTest = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Ranges which have a upper bound that 
-	 * 		is less than the lower bound of a Range object
-	 */
 	@Test
 	public void test_Intersects_provided_Upperbound_Less_Than_Lowerbound()
 	{
@@ -305,12 +182,6 @@ public class RangeTest {
 		assertEquals("Testing intersects() where the provided Upper bound < toTests lower bound", false, result);
 		toTest = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Ranges which have a upper bound that 
-	 * 		is equal the lower bound of a Range object
-	 */
 	@Test
 	public void test_Intersects_provided_Upperbound_Equal_To_Lowerbound()
 	{
@@ -319,12 +190,6 @@ public class RangeTest {
 		assertEquals("Testing intersects() where the provided Upper bound == toTests lower bound", true, result);
 		toTest = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Ranges which have a upper bound that 
-	 * 		is greater than the lower bound of a Range object
-	 */
 	@Test
 	public void test_Intersects_provided_Upperbound_Greater_Than_Lowerbound()
 	{
@@ -334,12 +199,6 @@ public class RangeTest {
 		assertEquals("Testing intersects() where the provided Upper bound > toTests lower bound", true, result);
 		toTest = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Ranges that are completely contained 
-	 * 		within the range of a  Range object
-	 */
 	@Test
 	public void test_Intersects_Provided_Range_Contained_Within_Range()
 	{
@@ -351,25 +210,12 @@ public class RangeTest {
 
 	
 	//Tests for shift()
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Testing the shift function with 
-	 * 		a Range object initialized to zero 
-	 */
 	@Test(expected=NullPointerException.class)
 	public void test_Shift_Null_Range()
 	{
 		Range toTest = null;
 		Range.shift(toTest, 5);
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Testing shift function with a value 
-	 * 		that results in neither the upper or lower bound of a 
-	 * 		Range object hitting zero 
-	 */
 	@Test
 	public void test_Shift_Neither_Bound_Hits_Zero()
 	{
@@ -380,12 +226,6 @@ public class RangeTest {
 		toTest = null;
 		compare = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Testing shift function where the upper 
-	 * 		bound hits zero
-	 */
 	@Test
 	public void test_Shift_Upper_Bound_Hits_Zero()
 	{
@@ -396,11 +236,6 @@ public class RangeTest {
 		toTest = null;
 		compare = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Testing shift where the lower bound hits zero
-	 */
 	@Test
 	public void test_Shift_Lower_Bound_Hits_Zero()
 	{
@@ -411,12 +246,6 @@ public class RangeTest {
 		toTest = null;
 		compare = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Testing shift where both lower and 
-	 * 		upper bound hit zero 
-	 */
 	@Test
 	public void test_Shift_Both_Bounds_Hit_Zero()
 	{
@@ -427,11 +256,8 @@ public class RangeTest {
 		toTest = null;
 		compare = null;
 	}
-	/*
-	 * This test added for lab3
-	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
-	 */
+	
+	//this test added for lab3
 	@Test
 	public void test_Shift_Crosses_Zero_Enabled()
 	{
@@ -443,12 +269,6 @@ public class RangeTest {
 
 	
 	//tests for contains()
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Values greater than the upper 
-	 * 		bound of a Range object 
-	 */
 	@Test
 	public void test_Contains_Greater_Than_Upper()
 	{
@@ -457,12 +277,6 @@ public class RangeTest {
 		assertEquals("Testing contains with a value greater than the upper bound of range", false, result);
 		toTest = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Values equal to the upper 
-	 * 		bound of a Range object 
-	 */
 	@Test
 	public void test_Contains_Equal_To_Upper()
 	{
@@ -471,12 +285,6 @@ public class RangeTest {
 		assertEquals("Testing contains with a value equal to the upper bound of range", true, result);
 		toTest = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Values somewhere in the 
-	 * 		middle of a Range object 
-	 */
 	@Test
 	public void test_Contains_In_Middle()
 	{
@@ -485,12 +293,6 @@ public class RangeTest {
 		assertEquals("Testing contains with a value in the middle of the specified range:", true, result);
 		toTest = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Values that are equal to the lower 
-	 * 		bound of a Range object 
-	 */
 	@Test
 	public void test_Contains_Equal_To_Lower()
 	{
@@ -499,12 +301,6 @@ public class RangeTest {
 		assertEquals("Testing contains with a value equal to the lower bound of range", true, result);
 		toTest = null;
 	}
-	/*
-	 * Test type: Black Box
-	 * Strategy followed: Equivalence Partitions
-	 * 		Partition Covered: Values that are less than the 
-	 * 		lower bound of a Range Object 
-	 */
 	@Test
 	public void test_Contains_Less_Than()
 	{
@@ -516,33 +312,19 @@ public class RangeTest {
 	
 	//tests for expandToInclude(), added for lab3
 	//note that expandToInclude(range,null) cant be tested, cant pass in null for primitive type double
-	/*
-	 * This test added for lab3
-	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
-	 */
+
 	@Test
 	public void test_expandToInclude_valBelowRange(){
 		Range r = Range.expandToInclude(exampleRange5, -5); //exampleRange5 is (0,10)
 		Range expected = new Range(-5, 10);
 		assertEquals("The expansion of (0,10) to inlcude -5", expected, r);
 	}
-	/*
-	 * This test added for lab3
-	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
-	 */
 	@Test
 	public void test_expandToInclude_valAboveRange(){
 		Range r = Range.expandToInclude(exampleRange5, 15); //exampleRange5 is (0,10)
 		Range expected = new Range(0, 15);
 		assertEquals("The expansion of (0,10) to inlcude 15", expected, r);
 	}
-	/*
-	 * This test added for lab3
-	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
-	 */
 	@Test
 	public void test_expandToInclude_valInRange(){
 		Range r = Range.expandToInclude(exampleRange5, 5); //exampleRange5 is (0,10)
@@ -551,34 +333,18 @@ public class RangeTest {
 	}
 	
 	//tests for constrain(), added for lab3
-	/*
-	 * This test added for lab3
-	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
-	 */
 	@Test
 	public void test_constrain_valInRange(){
 		double r = exampleRange5.constrain(3.2); //exampleRange5 is (0,10)
 		double expected = 3.2;
 		assertEquals("The contrain of 3.2 within (0,10)", expected, r, 0.01d);
 	}
-	/*
-	 * This test added for lab3
-	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
-	 */
 	@Test
 	public void test_constrain_valAboveRange(){
 		double r = exampleRange5.constrain(13.3); //exampleRange5 is (0,10)
 		double expected = 10.0;
 		assertEquals("The contrain of 3 within (0,10)", expected, r, 0.01d);
-	}
-	/*
-	 * This test added for lab3
-	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
-	 */
-	@Test
+	}@Test
 	public void test_constrain_valBelowRange(){
 		double r = exampleRange5.constrain(-4.5); //exampleRange5 is (0,10)
 		double expected = 0.0;
@@ -586,11 +352,6 @@ public class RangeTest {
 	}
 	
 	//tests for getCentralValue(), added for lab3
-	/*
-	 * This test added for lab3
-	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
-	 */
 	@Test
 	public void test_getCentralValue(){
 		double r = exampleRange5.getCentralValue(); //exampleRange5 is (0,10)
@@ -599,22 +360,12 @@ public class RangeTest {
 	}
 	
 	//tests for constructor, added for lab3
-	/*
-	 * This test added for lab3
-	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
-	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void test_ctor_lowerBiggerThanUpper(){
 		Range r = new Range(10, 5);
 	}
 	
 	//tests for hashCode(), added for lab3
-	/*
-	 * This test added for lab3
-	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
-	 */
 	@Test
 	public void test_hashCode(){
 		int r = exampleRange5.hashCode(); //exampleRange5 is (0,10)
