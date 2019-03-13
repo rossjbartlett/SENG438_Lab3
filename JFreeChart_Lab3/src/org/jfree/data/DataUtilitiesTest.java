@@ -12,6 +12,10 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Test;
 
+/*
+ * The following class is used to do Black-box and White-Box Testing on DataUtilites.
+ * Whitebox tests can be found at the bottom after all the blackbox tests. 
+ */
 public class DataUtilitiesTest {
 
 	// tests for calculateColumnTotal()
@@ -194,39 +198,6 @@ public class DataUtilitiesTest {
 		// tear-down: NONE in this test method
 	}
 	
-	//Testing calculateColumnTotal where some of the columns contain null values
-	@Test
-	public void testing_calculateColumnTotal_with_null_values_in_column()
-	{
-		Mockery mockingContext = new Mockery();
-		final Values2D values = mockingContext.mock(Values2D.class);
-		mockingContext.checking(new Expectations() 
-		{
-			{
-				one(values).getRowCount();
-				will(returnValue(5));
-				
-				one(values).getValue(0, 0);
-				will(returnValue(5));
-				
-				one(values).getValue(1, 0);
-				will(returnValue(4));
-				
-				one(values).getValue(2, 0);
-				will(returnValue(null));
-				
-				one(values).getValue(3, 0);
-				will(returnValue(1));
-				
-				one(values).getValue(4, 0);
-				will(returnValue(0));
-			}
-		});
-		
-		double result = DataUtilities.calculateColumnTotal(values, 0);
-		
-		assertEquals("Acessing column 0 should return 10",10, result, .000000001d);
-	}
 
 	
 	// tests for calculateRowTotal()
@@ -409,41 +380,6 @@ public class DataUtilitiesTest {
 		// tear-down: NONE in this test method
 	}
 
-	//Testing calculateRowTotal where some of the rows contain null values
-	@Test
-	public void testing_calculateRowTotal_with_null_values_in_row()
-	{
-		Mockery mockingContext = new Mockery();
-		final Values2D values = mockingContext.mock(Values2D.class);
-		mockingContext.checking(new Expectations()
-		{
-			{
-				one(values).getColumnCount();
-				will(returnValue(5));
-				
-				one(values).getValue(0, 0);
-				will(returnValue(6));
-				
-				one(values).getValue(0, 1);
-				will(returnValue(4));
-				
-				one(values).getValue(0, 2);
-				will(returnValue(3));
-				
-				one(values).getValue(0, 3);
-				will(returnValue(null));
-				
-				one(values).getValue(0, 4);
-				will(returnValue(null));
-			}
-				
-		});
-		
-		double result = DataUtilities.calculateRowTotal(values, 0);
-		
-		assertEquals("Acessing row 0 should return 13",13, result, .000000001d);
-	}
-	
 	// tests for createNumberArray()
 	@Test(expected = InvalidParameterException.class)
 	public void createNumberArrayNull() {
@@ -631,9 +567,86 @@ public class DataUtilitiesTest {
 		DataUtilities.getCumulativePercentages(values);
 	}
 
-	//TODO: More tests for getCumulativePercentage()
+
+	/* 
+	 * 
+	 * WHITEBOX TESTING 
+	 * 
+	 */
+
+	//Testing calculateRowTotal where a row contains some null values
+	//By doing so, the decision if (n != null) is sufficiently covered
+	@Test
+	public void testing_calculateRowTotal_with_null_values_in_row()
+	{
+		Mockery mockingContext = new Mockery();
+		final Values2D values = mockingContext.mock(Values2D.class);
+		mockingContext.checking(new Expectations()
+		{
+			{
+				one(values).getColumnCount();
+				will(returnValue(5));
+				
+				one(values).getValue(0, 0);
+				will(returnValue(6));
+				
+				one(values).getValue(0, 1);
+				will(returnValue(4));
+				
+				one(values).getValue(0, 2);
+				will(returnValue(3));
+				
+				one(values).getValue(0, 3);
+				will(returnValue(null));
+				
+				one(values).getValue(0, 4);
+				will(returnValue(null));
+			}
+				
+		});
+		
+		double result = DataUtilities.calculateRowTotal(values, 0);
+		
+		assertEquals("Acessing row 0 should return 13",13, result, .000000001d);
+	}
 	
-	//Testing getCumulativePercentage where the KeyedValues contain null values
+		//Testing calculateColumnTotal where a column contains a null value
+		//By doing so, the decision if (n != null) is sufficiently covered
+		@Test
+		public void testing_calculateColumnTotal_with_null_values_in_column()
+		{
+			Mockery mockingContext = new Mockery();
+			final Values2D values = mockingContext.mock(Values2D.class);
+			mockingContext.checking(new Expectations() 
+			{
+				{
+					one(values).getRowCount();
+					will(returnValue(5));
+					
+					one(values).getValue(0, 0);
+					will(returnValue(5));
+					
+					one(values).getValue(1, 0);
+					will(returnValue(4));
+					
+					one(values).getValue(2, 0);
+					will(returnValue(null));
+					
+					one(values).getValue(3, 0);
+					will(returnValue(1));
+					
+					one(values).getValue(4, 0);
+					will(returnValue(0));
+				}
+			});
+			
+			double result = DataUtilities.calculateColumnTotal(values, 0);
+			
+			assertEquals("Acessing column 0 should return 10",10, result, .000000001d);
+		}
+
+		//Testing calculateColumnTotal where a value is null
+		//By doing so, the decisions if (n != null) are sufficiently covered
 	@Test
 	public void testing_getCumulativePercentage_with_null_value()
 	{
