@@ -15,11 +15,21 @@ import org.junit.Test;
 public class DataUtilitiesTest {
 
 	// tests for calculateColumnTotal()
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: A null data table
+	 */
 	@Test(expected = InvalidParameterException.class)
 	public void calculateColumnTotalForNullTable() {
 		DataUtilities.calculateColumnTotal(null, 0);
 		// throws NullPointerException instead
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Boundary value testing for below lower bound
+	 */
 	@Test
 	public void calculateColumnTotalBLB() {
 		// setup
@@ -39,6 +49,11 @@ public class DataUtilitiesTest {
 		assertEquals("Attempting to acess column -1 should return 0",0, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: BVT at lower bound
+	 */
 	@Test
 	public void calculateColumnTotalLB() {
 		// setup
@@ -66,6 +81,11 @@ public class DataUtilitiesTest {
 		assertEquals("Summing column 0 should return 5",5, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: BVT above lower bound
+	 */
 	@Test
 	public void calculateColumnTotalALB() {
 		// setup
@@ -93,6 +113,11 @@ public class DataUtilitiesTest {
 		assertEquals("Acessing column 1 should return 5",5, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: BVT below upper bound
+	 */
 	@Test
 	public void calculateColumnTotalBUB() {
 		// setup
@@ -120,6 +145,11 @@ public class DataUtilitiesTest {
 		assertEquals("Acessing column 3 should return 5",5, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: BVT at upper bound
+	 */
 	@Test
 	public void calculateColumnTotalUB() {
 		// setup
@@ -147,6 +177,11 @@ public class DataUtilitiesTest {
 		assertEquals("Acessing column 4 should return 5",5, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: BVT above upper bound
+	 */
 	@Test
 	public void calculateColumnTotalAUB() {
 		// setup
@@ -166,6 +201,11 @@ public class DataUtilitiesTest {
 		assertEquals("Acessing column 5 (out of bounds) should return 0",0, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Partition within valid range
+	 */
 	@Test
 	public void calculateColumnTotalNOM() {
 		// setup
@@ -193,8 +233,12 @@ public class DataUtilitiesTest {
 		assertEquals("Acessing column 2 should return 5",5, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
-	
-	//Testing calculateColumnTotal where some of the columns contain null values
+	/*
+	 * This test added for lab3
+	 * Test type: White Box
+	 * Strategy followed: TODO Add strategy. 
+	 * Testing calculateColumnTotal where some of the columns contain null values
+	 */
 	@Test
 	public void testing_calculateColumnTotal_with_null_values_in_column()
 	{
@@ -230,11 +274,21 @@ public class DataUtilitiesTest {
 
 	
 	// tests for calculateRowTotal()
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: A null data table
+	 */
 	@Test(expected = InvalidParameterException.class)
 	public void calculateRowTotalForNullTable() {
 		DataUtilities.calculateRowTotal(null, 0);
 		// throws NullPointerException instead
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Boundary value testing for below lower bound
+	 */
 	@Test
 	public void calculateRowTotalBLB() {
 		// setup
@@ -254,6 +308,11 @@ public class DataUtilitiesTest {
 		assertEquals("Acessing row -1 should return 0",0, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: BVT at lower bound
+	 */
 	@Test
 	public void calculateRowTotalLB() {
 		// setup
@@ -281,6 +340,11 @@ public class DataUtilitiesTest {
 		assertEquals("Summing row 0 should return 5",5, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: BVT above lower bound
+	 */
 	@Test
 	public void calculateRowTotalALB() {
 		// setup
@@ -308,6 +372,11 @@ public class DataUtilitiesTest {
 		assertEquals("Summing row 1 should return 5",5, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: BVT below lower bound
+	 */
 	@Test
 	public void calculateRowTotalBUB() {
 		// setup
@@ -335,6 +404,11 @@ public class DataUtilitiesTest {
 		assertEquals("Summing row 3 should return 5",5, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: BVT at upper bound
+	 */
 	@Test
 	public void calculateRowTotalUB() {
 		// setup
@@ -362,6 +436,11 @@ public class DataUtilitiesTest {
 		assertEquals("Summing row 4 should return 5",5, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: BVT above upper bound
+	 */
 	@Test
 	public void calculateRowTotalAUB() {
 		// setup
@@ -381,6 +460,11 @@ public class DataUtilitiesTest {
 		assertEquals("Attempting to access row 5 (out of bound) should return 0",0, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Partition within valid range
+	 */
 	@Test
 	public void calculateRowTotalNOM() {
 		// setup
@@ -408,8 +492,12 @@ public class DataUtilitiesTest {
 		assertEquals("Summing row 2 should return 5",5, result, .000000001d);
 		// tear-down: NONE in this test method
 	}
-
-	//Testing calculateRowTotal where some of the rows contain null values
+	/*
+	 * This test added for lab3
+	 * Test type: White Box
+	 * Strategy followed: TODO Add strategy. 
+	 * Testing calculateRowTotal where some of the rows contain null values
+	 */
 	@Test
 	public void testing_calculateRowTotal_with_null_values_in_row()
 	{
@@ -445,11 +533,21 @@ public class DataUtilitiesTest {
 	}
 	
 	// tests for createNumberArray()
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Null Data
+	 */
 	@Test(expected = InvalidParameterException.class)
 	public void createNumberArrayNull() {
 		DataUtilities.createNumberArray(null);
 		// throws IllegalArgumentException instead
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Empty (non-null) data
+	 */
 	@Test
 	public void createNumberArrayEmpty() {
 		double a[] = {};
@@ -457,6 +555,11 @@ public class DataUtilitiesTest {
 		Number expected[] = {};
 		assertArrayEquals("Arrays should be equal",expected, r);
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: A valid double array
+	 */
 	@Test
 	public void createNumberArrayValid() {
 		double a[] = { 1.5, 2.5, 3.5, 4.5};
@@ -467,19 +570,33 @@ public class DataUtilitiesTest {
 
 	
 	// tests for createNumberArray2D()
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Null Data
+	 */
 	@Test(expected = InvalidParameterException.class)
 	public void createNumberArray2DNull() {
 		DataUtilities.createNumberArray2D(null);
 		// throws IllegalArgumentException instead
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Empty (non-null) data
+	 */
 	@Test
 	public void createNumberArray2DEmpty() {
 		double a[][] = {{}};
 		Number r[][] = DataUtilities.createNumberArray2D(a);
 		Number expected[][] = {{}};
-		assertArrayEquals("Arrays should be equal",expected, r);
-		
+		assertArrayEquals("Arrays should be equal",expected, r);		
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: A valid double 2D-array
+	 */
 	@Test
 	public void createNumberArray2DValid() {
 		double a[][] = { { 1.0, 2.0, 3.0 }, { 1.5, 2.5, 3.5 }, { -2.0, -1.0, 0.0 } };
@@ -487,12 +604,22 @@ public class DataUtilitiesTest {
 		Number expected[][] = { { 1.0, 2.0, 3.0 }, { 1.5, 2.5, 3.5 }, { -2.0, -1.0, 0.0 } };
 		assertArrayEquals("Arrays should be equal",expected, r);
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Array with some null inner-arrays 
+	 */
 	@Test(expected = InvalidParameterException.class)
 	public void createNumberArray2DInnerNull() {
 		double a[][] = { { 1.0, 2.0, 3.0 }, null, { -2.0, -1.0, 0.0 } };
 		DataUtilities.createNumberArray2D(a);
 		// throws IllegalArgumentException instead
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Array with some empty inner-arrays
+	 */
 	@Test
 	public void createNumberArray2DInnerEmpty() {
 		double a[][] = { { 1.0, 2.0, 3.0 }, {}, { -2.0, -1.0, 0.0 } };
@@ -503,11 +630,21 @@ public class DataUtilitiesTest {
 
 
 	//tests for getCumulativePercentage()
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Null Table
+	 */
 	@Test(expected = InvalidParameterException.class)
 	public void getCumulativePercentageForNullTable() {
 		DataUtilities.getCumulativePercentages(null);
 		// throws NullPointerException instead
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Valid Data
+	 */
 	@Test
 	public void getCumulativePercentageNOM(){
 		//Setup
@@ -577,6 +714,11 @@ public class DataUtilitiesTest {
 		// tear-down: NONE in this test method
 
 	}
+	/*
+	 * Test type: Black Box
+	 * Strategy followed: Equivalence Partitions
+	 * 		Partition Covered: Divide By 0 Logical Error
+	 */
 	@Test(expected = ArithmeticException.class)
 	public void getCumulativePercentageDivByZero(){
 		//Setup
@@ -630,10 +772,13 @@ public class DataUtilitiesTest {
 		//but it is not thrown, they must check if numerator is 0 then they don't do the division
 		DataUtilities.getCumulativePercentages(values);
 	}
-
 	//TODO: More tests for getCumulativePercentage()
-	
-	//Testing getCumulativePercentage where the KeyedValues contain null values
+	/*
+	 * This test added for lab3
+	 * Test type: White Box
+	 * Strategy followed: TODO Add strategy. 
+	 * Testing getCumulativePercentage where the KeyedValues contain null values
+	 */
 	@Test
 	public void testing_getCumulativePercentage_with_null_value()
 	{
