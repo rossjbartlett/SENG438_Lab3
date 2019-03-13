@@ -236,7 +236,7 @@ public class DataUtilitiesTest {
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage
 	 * Testing calculateColumnTotal where some of the columns contain null values
 	 */
 	@Test
@@ -495,7 +495,7 @@ public class DataUtilitiesTest {
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage
 	 * Testing calculateRowTotal where some of the rows contain null values
 	 */
 	@Test
@@ -772,11 +772,10 @@ public class DataUtilitiesTest {
 		//but it is not thrown, they must check if numerator is 0 then they don't do the division
 		DataUtilities.getCumulativePercentages(values);
 	}
-	//TODO: More tests for getCumulativePercentage()
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage
 	 * Testing getCumulativePercentage where the KeyedValues contain null values
 	 */
 	@Test
