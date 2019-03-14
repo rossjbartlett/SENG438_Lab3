@@ -430,7 +430,7 @@ public class RangeTest {
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage.
 	 */
 	@Test
 	public void test_Shift_Crosses_Zero_Enabled()
@@ -519,7 +519,7 @@ public class RangeTest {
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage
 	 */
 	@Test
 	public void test_expandToInclude_valBelowRange(){
@@ -530,7 +530,7 @@ public class RangeTest {
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage
 	 */
 	@Test
 	public void test_expandToInclude_valAboveRange(){
@@ -541,7 +541,7 @@ public class RangeTest {
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage
 	 */
 	@Test
 	public void test_expandToInclude_valInRange(){
@@ -554,7 +554,7 @@ public class RangeTest {
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage
 	 */
 	@Test
 	public void test_constrain_valInRange(){
@@ -565,7 +565,7 @@ public class RangeTest {
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage
 	 */
 	@Test
 	public void test_constrain_valAboveRange(){
@@ -576,7 +576,7 @@ public class RangeTest {
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage
 	 */
 	@Test
 	public void test_constrain_valBelowRange(){
@@ -589,7 +589,7 @@ public class RangeTest {
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage
 	 */
 	@Test
 	public void test_getCentralValue(){
@@ -602,7 +602,7 @@ public class RangeTest {
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void test_ctor_lowerBiggerThanUpper(){
@@ -613,7 +613,7 @@ public class RangeTest {
 	/*
 	 * This test added for lab3
 	 * Test type: White Box
-	 * Strategy followed: TODO Add strategy. 
+	 * Strategy followed: Examined the implementation and developed a test cases for missing branches to increase coverage
 	 */
 	@Test
 	public void test_hashCode(){
